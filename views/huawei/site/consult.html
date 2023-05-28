@@ -1,0 +1,57 @@
+<div class="bigweb">
+<section class="breadcrumb">
+	<span>{echo:ILang::get('您当前的位置')}：</span> <a href="{url:}">{echo:ILang::get('商品信息')}首页</a> » {echo:ILang::get('商品信息')}咨询
+</section>
+
+<section class="web">
+	<section class="main">
+		<h2 class="main_head">{echo:ILang::get('我要咨询')}</h2>
+		<section class="user_form">
+			<form action='{url:/site/consult_act}' method='post' name='consult'>
+				<input type='hidden' name='goods_id' value='{$this->goodsRow['id']}' />
+				<dl>
+					<dt>{echo:ILang::get('咨询类型')}：</dt>
+					<dd>
+						<label><input class="radio" type="radio" value="0" name="type" checked=checked />{echo:ILang::get('商品咨询')}</label>
+						<label><input class="radio" type="radio" value="1" name="type" />{echo:ILang::get('库存及配送')}</label>
+						<label><input class="radio" type="radio" value="2" name="type" />{echo:ILang::get('支付问题')}</label>
+						<label><input class="radio" type="radio" value="3" name="type" />{echo:ILang::get('发票及保修')}</label>
+						<label><input class="radio" type="radio" value="4" name="type" />{echo:ILang::get('促销及商品')}</label>
+					</dd>
+				</dl>
+				<dl>
+					<dt>{echo:ILang::get('咨询内容')}：</dt>
+					<dd><textarea class="input_textarea" name='question' pattern='required' alt=''></textarea></dd>
+				</dl>
+				<dl>
+					<dt>{echo:ILang::get('验证码')}：</dt>
+					<dd>
+						<input type='text' class='input_text w100' name='captcha' pattern='^\w{5,10}$' />
+						<img src='{url:/site/getCaptcha}' id='captchaImg' onclick="changeCaptcha()" />
+					</dd>
+				</dl>
+				<dl>
+					<dt></dt>
+					<dd><input class="input_submit" type="submit" value="{echo:ILang::get('发表咨询')}" /></dd>
+				</dl>
+			</form>
+		</section>
+	</section>
+	<aside class="bar">
+		<div class="bar_box">
+			<h3 class="bar_box_head">{echo:ILang::get('商品信息')}</h3>
+			<div class="bar_goods_big">
+				<a target="_blank" href="{url:/site/products/id/$this->goodsRow['id']}">
+					<img alt="{$this->goodsRow['name']}" src="{url:/pic/thumb/img/$this->goodsRow['img']/w/180/h/180}">
+					<h5>{$this->goodsRow['name']}</h5>
+					<em>￥{$this->goodsRow['sell_price']}</em>
+					<label class="star_box">
+						<span class="item">{echo:ILang::get('评分')}</span>
+						<span class="star star_{echo:$this->goodsRow['apoint']}"></span>
+					</label>
+				</a>
+			</div>
+		</div>
+	</aside>
+</section>
+</div>
